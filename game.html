@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Reclamações da Minha Namorada</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    .box {
+      background-color: white;
+      padding: 30px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 1em;
+      margin-top: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff85c1;
+    }
+    .hidden {
+      display: none;
+    }
+    .meme {
+      width: 100%;
+      max-width: 300px;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .loading {
+      font-style: italic;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🛠️ Central de Reclamações da Maria</h1>
+    <p>Olá, você entrou no sistema de atendimento ao cliente emocional.<br>
+    Está insatisfeita com algum comportamento do seu namorado?</p>
+    <button onclick="mostrarFormulario()">✍️ Registrar Reclamação</button>
+
+    <form id="formulario" class="hidden" onsubmit="processarReclamacao(event)">
+      <h2>Formulário Oficial</h2>
+      <label>Nível de Decepção:</label>
+      <label><input type="radio" name="nivel" required> 😐 Leve (Linda como sempre)</label>
+      <label><input type="radio" name="nivel"> 😠 Média (Linda)</label>
+      <label><input type="radio" name="nivel"> 🤬 Extrema (E continuo linda)</label>
+
+      <label>Motivos:</label>
+      <label><input type="checkbox"> Ele demorou 3 minutos pra responder o WhatsApp</label>
+      <label><input type="checkbox"> Não percebeu que eu cortei 1mm do cabelo</label>
+      <label><input type="checkbox"> Ele reclamou da distancia igual todo dia 🙄</label>
+
+      <button type="submit">Enviar Reclamação</button>
+    </form>
+
+    <div id="resposta" class="hidden">
+      <p class="loading">Processando reclamação...</p>
+    </div>
+  </div>
+
+  <script>
+    function mostrarFormulario() {
+      document.getElementById('formulario').classList.remove('hidden');
+    }
+
+    function processarReclamacao(event) {
+      event.preventDefault();
+      const resposta = document.getElementById('resposta');
+      resposta.classList.remove('hidden');
+      resposta.innerHTML = '<p class="loading">Processando reclamação...</p>';
+      setTimeout(() => {
+        resposta.innerHTML = `
+          <h2>Reclamação registrada com sucesso! ✅</h2>
+          <p>Nosso time está analisando o caso com muito carinho.</p>
+          <p>Enquanto isso, receba sua compensação emocional:</p>
+          <img class="meme" src="https://i.imgur.com/6Utg4iv.png" alt="Meme fofo">
+          <p>Desculpa por existir e ser lindo demais 😎</p>
+          <button onclick="mostrarPremio()">💖 Solicitar carinho</button>
+        `;
+      }, 2000);
+    }
+
+    function mostrarPremio() {
+      const resposta = document.getElementById('resposta');
+      resposta.innerHTML = `
+        <h2>Recompensa liberada! 🎁</h2>
+        <ul style="text-align:left; display: inline-block;">
+          <li>✔️ 1 beijo</li>
+          <li>✔️ 1 cafuné</li>
+          <li>✔️ 1 desculpa mesmo sem saber o motivo</li>
+          <li>✔️ 1 uma passagem so de ida prai (pode dar para quem quiser)</li>
+        </ul>
+        <p>Obrigado por confiar na nossa central.<br> ❤️</p>
+      `;
+    }
+  </script>
+</body>
+</html>
